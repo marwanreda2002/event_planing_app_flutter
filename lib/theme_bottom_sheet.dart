@@ -1,22 +1,21 @@
+import 'package:event_planing/providers/app_theme_provider.dart';
 import 'package:event_planing/utils/app_colors.dart';
 import 'package:event_planing/utils/app_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/app_language_provider.dart';
-
-class LanguageBottomSheet extends StatefulWidget {
-  const LanguageBottomSheet({super.key});
+class ThemeBottomSheet extends StatefulWidget {
+  const ThemeBottomSheet({super.key});
 
   @override
-  State<LanguageBottomSheet> createState() => _LanguageBottomSheetState();
+  State<ThemeBottomSheet> createState() => _ThemeBottomSheetState();
 }
 
-class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
+class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
   @override
   Widget build(BuildContext context) {
-    var languageProvider = Provider.of<AppLanguageProvider>(context);
+    var themeProvider = Provider.of<AppThemeProvider>(context);
 
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
@@ -27,21 +26,21 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
         children: [
           GestureDetector(
               onTap: () {
-                languageProvider.changeLanguage("en");
+                themeProvider.changeTheme(ThemeMode.light);
               },
-              child: languageProvider.appLanguage == "en"
-                  ? selectedItemWidget(AppLocalizations.of(context)!.english)
-                  : notSelectedWidget(AppLocalizations.of(context)!.english)),
+              child: themeProvider.themeMode == ThemeMode.light
+                  ? selectedItemWidget(AppLocalizations.of(context)!.light)
+                  : notSelectedWidget(AppLocalizations.of(context)!.light)),
           SizedBox(
             height: 20,
           ),
           GestureDetector(
               onTap: () {
-                languageProvider.changeLanguage("ar");
+                themeProvider.changeTheme(ThemeMode.dark);
               },
-              child: languageProvider.appLanguage == "ar"
-                  ? selectedItemWidget(AppLocalizations.of(context)!.arabic)
-                  : notSelectedWidget(AppLocalizations.of(context)!.arabic)),
+              child: themeProvider.themeMode == ThemeMode.dark
+                  ? selectedItemWidget(AppLocalizations.of(context)!.dark)
+                  : notSelectedWidget(AppLocalizations.of(context)!.dark)),
         ],
       ),
     );

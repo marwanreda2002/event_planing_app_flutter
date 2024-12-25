@@ -1,5 +1,5 @@
-import 'package:event_planing/UI/home_screen/home_screen.dart';
 import 'package:event_planing/UI/tabs/profile/profile_tab.dart';
+import 'package:event_planing/home_screen.dart';
 import 'package:event_planing/providers/app_language_provider.dart';
 import 'package:event_planing/providers/app_theme_provider.dart';
 import 'package:event_planing/utils/app_theme.dart';
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: themeProvider.themeMode,
       debugShowCheckedModeBanner: false,
-      initialRoute: ProfileTab.routeName,
+      initialRoute: HomeScreen.routeName,
       routes: {
         HomeScreen.routeName: (_) => HomeScreen(),
         ProfileTab.routeName: (_) => ProfileTab(),

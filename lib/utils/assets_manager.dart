@@ -27,4 +27,5 @@ class AssetsManager {
   static const String sportImage = 'assets/images/sport_image.png';
   static const String birthdayImage = 'assets/images/birthday_image.png';
   static const String bookClubImage = 'assets/images/book_club_image.png';
+  static const String routeImage = 'assets/images/route_image.png';
 }
