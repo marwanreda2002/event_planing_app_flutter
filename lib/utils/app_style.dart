@@ -35,4 +35,7 @@ class AppStyle {
 
   static TextStyle regular14White = GoogleFonts.inter(
       fontSize: 14, fontWeight: FontWeight.w400, color: AppColors.whiteColor);
+
+  static TextStyle medium16White = GoogleFonts.inter(
+      fontSize: 16, fontWeight: FontWeight.w500, color: AppColors.whiteColor);
 }
