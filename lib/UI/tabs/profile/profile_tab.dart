@@ -1,9 +1,7 @@
-import 'package:event_planing/UI/tabs/favorite/favorite_tab.dart';
-import 'package:event_planing/UI/tabs/home/home_tab.dart';
-import 'package:event_planing/UI/tabs/map/map_tab.dart';
-import 'package:event_planing/language_bottom_sheet.dart';
+import 'package:event_planing/UI/auth/login/login_screen.dart';
+import 'package:event_planing/UI/tabs/profile/language_bottom_sheet.dart';
+import 'package:event_planing/UI/tabs/profile/theme_bottom_sheet.dart';
 import 'package:event_planing/providers/app_theme_provider.dart';
-import 'package:event_planing/theme_bottom_sheet.dart';
 import 'package:event_planing/utils/app_colors.dart';
 import 'package:event_planing/utils/app_style.dart';
 import 'package:flutter/material.dart';
@@ -16,79 +14,27 @@ import '../../../utils/assets_manager.dart';
 class ProfileTab extends StatefulWidget {
   const ProfileTab({super.key});
 
-  static String routeName = "/";
+  static String routeName = "profile tab";
 
   @override
   State<ProfileTab> createState() => _ProfileTabState();
 }
 
 class _ProfileTabState extends State<ProfileTab> {
-  int selectedIndex = 0;
-  List<Widget> tabs = [HomeTab(), MapTab(), FavoriteTab(), ProfileTab()];
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+    double screenWidth = 393;
+    double screenHeight = 841;
     var languageProvider = Provider.of<AppLanguageProvider>(context);
     var themeProvider = Provider.of<AppThemeProvider>(context);
 
     return Scaffold(
-      backgroundColor: themeProvider.themeMode == ThemeMode.dark
-          ? AppColors.primaryDark
-          : Colors.white,
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          canvasColor: AppColors.transparentColor,
-        ),
-        child: BottomAppBar(
-          color: Theme.of(context).primaryColor,
-          shape: CircularNotchedRectangle(),
-          notchMargin: 4,
-          child: BottomNavigationBar(
-            selectedLabelStyle: AppStyle.bold12White,
-            unselectedLabelStyle: AppStyle.bold12White,
-            type: BottomNavigationBarType.fixed,
-            onTap: (index) {
-              selectedIndex = index;
-              setState(() {});
-            },
-            currentIndex: selectedIndex,
-            items: [
-              buildBottomNavItem(
-                  index: 0,
-                  unSelectedImg: AssetsManager.iconHome,
-                  selectedImg: AssetsManager.iconHomeSelected,
-                  label: AppLocalizations.of(context)!.home),
-              buildBottomNavItem(
-                  index: 1,
-                  unSelectedImg: AssetsManager.iconMap,
-                  selectedImg: AssetsManager.iconMapSelected,
-                  label: AppLocalizations.of(context)!.map),
-              buildBottomNavItem(
-                  index: 2,
-                  unSelectedImg: AssetsManager.iconFavorite,
-                  selectedImg: AssetsManager.iconFavoriteSelected,
-                  label: AppLocalizations.of(context)!.favortie),
-              buildBottomNavItem(
-                  index: 3,
-                  unSelectedImg: AssetsManager.iconProfile,
-                  selectedImg: AssetsManager.iconProfileSelected,
-                  label: AppLocalizations.of(context)!.profile),
-            ],
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        elevation: 0,
-        onPressed: () {},
-        child: Icon(
-          Icons.add,
-          size: 35,
-          color: AppColors.whiteColor,
-        ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      backgroundColor:
+          themeProvider.isLight ? Colors.white : AppColors.primaryDark,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: AppColors.primaryLight,
         toolbarHeight: height * (0.20),
         shape: RoundedRectangleBorder(
@@ -186,7 +132,7 @@ class _ProfileTabState extends State<ProfileTab> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      themeProvider.themeMode == ThemeMode.light
+                      themeProvider.isLight
                           ? AppLocalizations.of(context)!.light
                           : AppLocalizations.of(context)!.dark,
                       style: AppStyle.bold20Primary,
@@ -200,24 +146,43 @@ class _ProfileTabState extends State<ProfileTab> {
                 ),
               ),
             ),
+            Spacer(),
+            ElevatedButton(
+              style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(AppColors.redColor),
+                  shape: WidgetStatePropertyAll(RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ))),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, LoginScreen.routeName);
+              },
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                    vertical: height * (16 / screenHeight)),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.logout,
+                      size: 24,
+                      color: AppColors.whiteColor,
+                    ),
+                    SizedBox(
+                      width: width * (8 / screenWidth),
+                    ),
+                    Text(
+                      AppLocalizations.of(context)!.logout,
+                      style: AppStyle.regular20White,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: height * (24 / screenHeight),
+            )
           ],
         ),
       ),
-    );
-  }
-
-  BottomNavigationBarItem buildBottomNavItem(
-      {required String unSelectedImg,
-      required String label,
-      required int index,
-      required selectedImg}) {
-    return BottomNavigationBarItem(
-      icon: ImageIcon(
-        color: Colors.white,
-        AssetImage(index == selectedIndex ? selectedImg : unSelectedImg),
-        size: 25,
-      ),
-      label: label,
     );
   }
 }

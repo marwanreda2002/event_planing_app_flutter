@@ -9,6 +9,8 @@ class AppLanguageProvider extends ChangeNotifier {
       return;
     }
     appLanguage = newLang;
+    // save data
+    saveDataLang(appLanguage);
     notifyListeners();
   }
 

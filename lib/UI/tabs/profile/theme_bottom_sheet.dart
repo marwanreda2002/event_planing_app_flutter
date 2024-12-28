@@ -26,9 +26,9 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
         children: [
           GestureDetector(
               onTap: () {
-                themeProvider.changeTheme(ThemeMode.light);
+                themeProvider.changeTheme(true);
               },
-              child: themeProvider.themeMode == ThemeMode.light
+              child: themeProvider.isLight
                   ? selectedItemWidget(AppLocalizations.of(context)!.light)
                   : notSelectedWidget(AppLocalizations.of(context)!.light)),
           SizedBox(
@@ -36,9 +36,9 @@ class _ThemeBottomSheetState extends State<ThemeBottomSheet> {
           ),
           GestureDetector(
               onTap: () {
-                themeProvider.changeTheme(ThemeMode.dark);
+                themeProvider.changeTheme(false);
               },
-              child: themeProvider.themeMode == ThemeMode.dark
+              child: themeProvider.isLight == false
                   ? selectedItemWidget(AppLocalizations.of(context)!.dark)
                   : notSelectedWidget(AppLocalizations.of(context)!.dark)),
         ],

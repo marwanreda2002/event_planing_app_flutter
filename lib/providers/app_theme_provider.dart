@@ -1,13 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppThemeProvider extends ChangeNotifier {
-  ThemeMode themeMode = ThemeMode.light;
+  bool isLight = true;
 
-  void changeTheme(ThemeMode newTheme) {
-    if (themeMode == newTheme) {
+  void changeTheme(bool newTheme) async {
+    if (isLight == newTheme) {
       return;
     }
-    themeMode = newTheme;
+    isLight = newTheme;
+    saveDataTheme(isLight);
+    notifyListeners();
+  }
+
+  void saveDataTheme(bool theme) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('theme', theme);
+    // saveDataToMap();
+  }
+
+  Future<void> getDataTheme() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final bool language = prefs.getBool('theme') ?? true;
+    isLight = language;
     notifyListeners();
   }
 }
