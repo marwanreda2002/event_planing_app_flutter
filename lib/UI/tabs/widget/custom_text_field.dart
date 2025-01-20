@@ -10,20 +10,28 @@ class CustomTextField extends StatelessWidget {
   TextStyle? labelStyle;
   Widget? suffixIcon;
   Widget? prefixIcon;
-
+  int? maxLines;
+  String? Function(String?)? validator;
+  TextEditingController? controller;
   CustomTextField(
       {this.borderColor = AppColors.greyColor,
+      this.validator,
       this.cursorColor,
       this.hintText,
       this.labelText,
       this.hintStyle,
       this.labelStyle,
       this.suffixIcon,
-      this.prefixIcon});
+      this.prefixIcon,
+      this.maxLines,
+      this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
+      controller: controller,
+      validator: validator,
+      maxLines: maxLines,
       cursorColor: cursorColor,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(

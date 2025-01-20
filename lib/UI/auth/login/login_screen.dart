@@ -93,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 text: TextSpan(children: [
                   TextSpan(
                       text:
-                          "${AppLocalizations.of(context)!.dont_have_an_account}?",
+                          "${AppLocalizations.of(context)!.dont_have_an_account}",
                       style: AppStyle.medium16Black),
                   TextSpan(
                       text: AppLocalizations.of(context)!.create_account,
@@ -134,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: height * (24 / screenHeight),
               ),
               CustomElevatedButton(
-                  icon: ImageIcon(AssetImage(AssetsManager.iconGoogle)),
+                  icon: Image.asset(AssetsManager.iconGoogle),
                   backgroundColor: AppColors.whiteColor,
                   text: AppLocalizations.of(context)!.login_with_google,
                   textStyle: AppStyle.medium20Primary,

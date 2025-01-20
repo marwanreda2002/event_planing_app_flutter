@@ -2,6 +2,7 @@ import 'package:event_planing/UI/auth/login/login_screen.dart';
 import 'package:event_planing/UI/auth/sign%20up/signup_Screen.dart';
 import 'package:event_planing/UI/home_screen.dart';
 import 'package:event_planing/UI/tabs/favorite/favorite_tab.dart';
+import 'package:event_planing/UI/tabs/home/add_event/add_event.dart';
 import 'package:event_planing/UI/tabs/profile/profile_tab.dart';
 import 'package:event_planing/providers/app_language_provider.dart';
 import 'package:event_planing/providers/app_theme_provider.dart';
@@ -47,7 +48,8 @@ class _MyAppState extends State<MyApp> {
         ProfileTab.routeName: (_) => ProfileTab(),
         FavoriteTab.routeName: (_) => FavoriteTab(),
         LoginScreen.routeName: (_) => LoginScreen(),
-        SignupScreen.routeName: (_) => SignupScreen()
+        SignupScreen.routeName: (_) => SignupScreen(),
+        AddEvent.routeName: (_) => AddEvent(),
       },
     );
   }

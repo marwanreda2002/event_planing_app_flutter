@@ -1,3 +1,4 @@
+import 'package:event_planing/UI/tabs/home/add_event/add_event.dart';
 import 'package:event_planing/providers/app_theme_provider.dart';
 import 'package:event_planing/utils/app_colors.dart';
 import 'package:event_planing/utils/app_style.dart';
@@ -76,7 +77,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 0,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, AddEvent.routeName);
+        },
         child: Icon(
           Icons.add,
           size: 35,

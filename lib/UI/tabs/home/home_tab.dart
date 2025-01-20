@@ -8,9 +8,6 @@ import 'package:provider/provider.dart';
 
 import '../../../providers/app_language_provider.dart';
 import '../../../providers/app_theme_provider.dart';
-import '../favorite/favorite_tab.dart';
-import '../map/map_tab.dart';
-import '../profile/profile_tab.dart';
 import 'event_item_widget.dart';
 
 class HomeTab extends StatefulWidget {
@@ -21,7 +18,7 @@ class HomeTab extends StatefulWidget {
 }
 
 int selectedIndex = 0;
-List<Widget> tabs = [HomeTab(), MapTab(), FavoriteTab(), ProfileTab()];
+// List<Widget> tabs = [HomeTab(), MapTab(), FavoriteTab(), ProfileTab()];
 
 class _HomeTabState extends State<HomeTab> {
   @override
@@ -64,25 +61,45 @@ class _HomeTabState extends State<HomeTab> {
               ],
             ),
             Spacer(),
-            Icon(
-              Icons.wb_sunny_outlined,
+            IconButton(
+              icon: Icon(themeProvider.isLight
+                  ? Icons.dark_mode
+                  : Icons.wb_sunny_outlined),
+              onPressed: () {
+                if (themeProvider.isLight) {
+                  themeProvider.changeTheme(false);
+                } else {
+                  themeProvider.changeTheme(true);
+                }
+              },
               color: AppColors.whiteColor,
             ),
             SizedBox(
               width: width * 0.02,
             ),
-            Container(
-              padding: EdgeInsets.symmetric(
-                vertical: height * 0.01,
-                horizontal: width * 0.02,
-              ),
-              decoration: BoxDecoration(
-                color: AppColors.whiteColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text(
-                "En",
-                style: AppStyle.bold14Primary,
+            GestureDetector(
+              onTap: () {
+                if (languageProvider.appLanguage == "en") {
+                  languageProvider.saveDataLang("ar");
+                  languageProvider.getDataLang();
+                } else {
+                  languageProvider.saveDataLang("en");
+                  languageProvider.getDataLang();
+                }
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  vertical: height * 0.01,
+                  horizontal: width * 0.02,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  languageProvider.appLanguage == "en" ? "AR" : "EN",
+                  style: AppStyle.bold14Primary,
+                ),
               ),
             )
           ],
@@ -130,6 +147,9 @@ class _HomeTabState extends State<HomeTab> {
                     isScrollable: true,
                     tabs: eventsNameList.map((eventName) {
                       return TabEventWidget(
+                          selectedBackGroundColor: AppColors.whiteColor,
+                          unSelectedTextStyle: AppStyle.medium16White,
+                          selectedTextStyle: AppStyle.medium16Primary,
                           eventName: eventName,
                           isSelected: selectedIndex ==
                               eventsNameList.indexOf(eventName));
