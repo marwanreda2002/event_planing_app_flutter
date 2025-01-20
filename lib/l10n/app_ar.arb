@@ -33,5 +33,18 @@
   "re_password": "تأكيد كلمة المرور",
   "already_have_account": "لديك حساب بالفعل؟",
   "logout": "تسجيل الخروج",
-  "name": "الاسم"
+  "name": "الاسم",
+  "title": "العنوان",
+  "description": "الوصف",
+  "event_title": "عنوان الحدث",
+  "event_description": "وصف الحدث",
+  "choose_data": "اختر التاريخ",
+  "choose_time": "اختر الوقت",
+  "event_date": "تاريخ الحدث",
+  "event_time": "وقت الحدث",
+  "location": "الموقع",
+  "choose_event_location": "اختر موقع الحدث",
+  "create_event": "إنشاء حدث",
+  "add_event": "إضافة حدث"
+
 }

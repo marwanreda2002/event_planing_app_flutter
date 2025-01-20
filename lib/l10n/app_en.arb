@@ -25,7 +25,7 @@
   "password": "Password",
   "forget_password": "Forget Password",
   "login": "Login",
-  "dont_have_an_account": "Don't have an account",
+  "dont_have_an_account": "Don't have an account?",
   "create_account": "Create Account",
   "or": "Or",
   "login_with_google": "Login With Google",
@@ -33,5 +33,17 @@
   "re_password": "Re Password",
   "already_have_account": "Already Have Account",
   "logout": "Logout",
-  "name": "Name"
+  "name": "Name",
+  "title": "Title",
+  "description": "Description",
+  "event_title": "Event Title",
+  "event_description": "Event Description",
+  "choose_data": "Choose Date",
+  "choose_time": "Choose Time",
+  "event_date": "Event Date",
+  "event_time": "Event Time",
+  "location": "Location",
+  "choose_event_location": "Choose Event Location",
+  "create_event": "Create Event",
+  "add_event": "Add Event"
 }
